@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--
+ 目录下运行下面命令：/
+     mvn mybatis-generator:generate -Dmybatis.generator.configurationFile=./src/main/resources/generatorConfig.xml
+ -->
+<generatorConfiguration>
+
+    <!-- 里面属性是有顺序的否则会报错-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="mergeable" value="true"></property>
+        <!--文件编码格式-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <!-- true 表示不产生注释-->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test"
+                        userId="mysql" password="test">
+        </jdbcConnection>
+
+         <!--use the java.math.BigDecimal type for DECIMAL and NUMERIC columns-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+        <!--模型产生类路径等设置-->
+        <javaModelGenerator targetPackage="com.hsc.study.dao.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <!-- 设置是否在setter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="false" />
+        </javaModelGenerator>
+        <!--生成xml 文件-->
+        <sqlMapGenerator targetPackage="mapper"    targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成mapper 接口的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hsc.study.dao.mapper"   targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--根据表生成对应实体 不要生成物理删除的-->
+        <table tableName="user" domainObjectName="UserDo"
+                enableDeleteByExample="false"
+                enableDeleteByPrimaryKey="false">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="jdbc" identity="true" />
+        </table>
+
+    </context>
+</generatorConfiguration>
