@@ -52,7 +52,7 @@
                 enableDeleteByExample="false"
                 enableDeleteByPrimaryKey="false">
             <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="userId" sqlStatement="jdbc" identity="true" />
+            <generatedKey column="userId" sqlStatement="MySql" identity="true" />
         </table>
 
     </context>
