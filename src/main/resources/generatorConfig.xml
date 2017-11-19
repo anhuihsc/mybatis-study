@@ -48,11 +48,11 @@
         </javaClientGenerator>
 
         <!--根据表生成对应实体 不要生成物理删除的-->
-        <table tableName="user" domainObjectName="UserDo"
+        <table tableName="Users" domainObjectName="UserDo"
                 enableDeleteByExample="false"
                 enableDeleteByPrimaryKey="false">
             <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="id" sqlStatement="jdbc" identity="true" />
+            <generatedKey column="userId" sqlStatement="jdbc" identity="true" />
         </table>
 
     </context>
